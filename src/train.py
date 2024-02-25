@@ -23,8 +23,8 @@ class ProjectAgent:
         pickle.dump(self.Q, open(path, "wb"))
 
     def load(self):
-        self.Q = pickle.load(open("model.pkl", "rb"))
-
+      with open("src/model.pkl", "rb") as f:
+        self.Q = pickle.load(f)
 
     def greedy_action(self,Q,s,nb_actions):
         Qsa = []
