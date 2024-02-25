@@ -83,7 +83,7 @@ class ProjectAgent:
         return Qfunctions[-1]
     
     def train(self,gamma,itteration): 
-        S, A, R, S2, D = self.collect_samples(env, 5000)
+        S, A, R, S2, D = self.collect_samples(env, 10000)
         nb_actions = env.action_space.n
         self.Q = self.rf_fqi(S, A, R, S2, D, itteration, nb_actions, gamma)
         
@@ -102,7 +102,7 @@ def evaluate_agent(agent, env, nb_episodes):
 # Entraînement de l'agent
 if __name__ == "__main__":
   gamma=0.95
-  iteration=150
+  iteration=250
   agent = ProjectAgent()
   agent.train(gamma,iteration)
   print ("ok")
