@@ -335,7 +335,7 @@ DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.ReLU(), 
                           nn.Linear(nb_neurons, n_action)).to(device)
 
-agent = ProjectAgent()
-episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 200)
+#agent = ProjectAgent()
+#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 200)
 
 
