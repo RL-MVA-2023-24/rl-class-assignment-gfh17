@@ -20,8 +20,8 @@ class ProjectAgent:
         else:
             return self.greedy_action(self.Q,observation,env.action_space.n)
     def save(self, path):
-        pickle.dump(self.Q, open(path, "wb"))
-
+        with open(path, "wb") as f:
+            pickle.dump(self.Q, f)
     def load(self):
       with open("src/model.pkl", "rb") as f:
         self.Q = pickle.load(f)
