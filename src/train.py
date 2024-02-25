@@ -100,19 +100,20 @@ def evaluate_agent(agent, env, nb_episodes):
     return total_rewards
 
 # Entraînement de l'agent
-gamma=0.95
-iteration=150
-agent = ProjectAgent()
-agent.train(gamma,iteration)
-print ("ok")
-# Évaluation de l'agent
-nb_episodes_evaluation = 2
-scores = evaluate_agent(agent, env, nb_episodes_evaluation)
-average_score = np.mean(scores)
-print (scores)
-print("Score moyen :", average_score//10**8)
+if __name__ == "__main__":
+  gamma=0.95
+  iteration=150
+  agent = ProjectAgent()
+  agent.train(gamma,iteration)
+  print ("ok")
+  # Évaluation de l'agent
+  nb_episodes_evaluation = 2
+  scores = evaluate_agent(agent, env, nb_episodes_evaluation)
+  average_score = np.mean(scores)
+  print (scores)
+  print("Score moyen :", average_score//10**8)
 
-# Sauvegarde de l'agent entraîné
-agent.save("model.pkl")
+  # Sauvegarde de l'agent entraîné
+  agent.save("model.pkl")
 
 
