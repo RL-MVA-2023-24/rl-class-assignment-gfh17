@@ -302,7 +302,7 @@ class ProjectAgent:
     def save(self, path):
         torch.save(self.model.state_dict(), path)
     def load(self):
-        self.model.load_state_dict(torch.load("model.pt"))
+        self.model.load_state_dict(torch.load("model.pt",map_location=device))
     def act(self, observation, use_random=False):
         if use_random:
             return env.action_space.sample()
