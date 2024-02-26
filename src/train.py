@@ -127,6 +127,8 @@ from tqdm import tqdm
 import torch
 import torch.nn as nn
 import random
+#from google.colab import files
+#import io
 
 env = TimeLimit(
     env=HIVPatient(domain_randomization=False), max_episode_steps=200
@@ -294,6 +296,7 @@ class ProjectAgent:
                 if score > best_score:
                     best_score = score
                     self.save("model.pt")
+                    #files.download('model.pt')
                     print(" New model saved")
             else:
                 state = next_state
@@ -301,6 +304,12 @@ class ProjectAgent:
     
     def save(self, path):
         torch.save(self.model.state_dict(), path)
+        """with open(path, "rb") as f:
+            model_content = f.read()
+
+        # Download the saved model file as a temporary file
+        with io.BytesIO(model_content) as buffer:
+            files.download(buffer, filename="model.pt")"""
     def load(self):
         self.model.load_state_dict(torch.load("model.pt",map_location=device))
     def act(self, observation, use_random=False):
@@ -326,7 +335,7 @@ config = {'nb_actions': env.action_space.n,
 device = "cuda" if torch.cuda.is_available() else "cpu"
 state_dim = env.observation_space.shape[0]
 n_action = env.action_space.n 
-nb_neurons= 400
+nb_neurons= 512
 DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.ReLU(),
                           nn.Linear(nb_neurons, nb_neurons),
@@ -340,6 +349,8 @@ DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.Linear(nb_neurons, n_action)).to(device)
 
 #agent = ProjectAgent()
-#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 1000)
+#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 200)
+
+
 
 
