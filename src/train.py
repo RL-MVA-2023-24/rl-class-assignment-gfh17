@@ -320,13 +320,13 @@ class ProjectAgent:
 
 config = {'nb_actions': env.action_space.n,
           'learning_rate': 0.001,
-          'gamma': 0.985,
+          'gamma': 0.98,
           'buffer_size': 100000,
           'epsilon_min': 0.02,
           'epsilon_max': 1.,
           'epsilon_decay_period': 20000,
-          'epsilon_delay_decay': 500,
-          'batch_size': 1024,
+          'epsilon_delay_decay': 100,
+          'batch_size': 812,
           'gradient_steps': 4,
           'update_target_strategy': 'replace', # or 'ema'
           'update_target_freq': 500,
@@ -335,7 +335,8 @@ config = {'nb_actions': env.action_space.n,
 device = "cuda" if torch.cuda.is_available() else "cpu"
 state_dim = env.observation_space.shape[0]
 n_action = env.action_space.n 
-nb_neurons= 512
+#diminuer la taille mais augmenter les epoches 
+nb_neurons= 256
 DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.ReLU(),
                           nn.Linear(nb_neurons, nb_neurons),
@@ -349,7 +350,7 @@ DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.Linear(nb_neurons, n_action)).to(device)
 
 #agent = ProjectAgent()
-#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 200)
+#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 300)
 
 
 
