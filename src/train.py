@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 
 env = TimeLimit(
-    env=HIVPatient(domain_randomization=False), max_episode_steps=200
+    env=HIVPatient(domain_randomization=true), max_episode_steps=200
 )  
 class ProjectAgent:
     def __init__(self): 
@@ -350,7 +350,7 @@ DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.Linear(nb_neurons, n_action)).to(device)
 
 #agent = ProjectAgent()
-#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 300)
+#episode_return, MC_avg_discounted_reward, MC_avg_total_reward, V_init_state = agent.train(env, 200)
 
 
 
