@@ -336,7 +336,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 state_dim = env.observation_space.shape[0]
 n_action = env.action_space.n 
 #diminuer la taille mais augmenter les epoches 
-nb_neurons= 256
+nb_neurons= 512
 DQN = torch.nn.Sequential(nn.Linear(state_dim, nb_neurons),
                           nn.ReLU(),
                           nn.Linear(nb_neurons, nb_neurons),
